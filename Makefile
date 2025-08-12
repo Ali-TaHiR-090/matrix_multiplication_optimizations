@@ -1,22 +1,29 @@
 src := src/mat_mil.c
 build_dir := build
 
+optimized   := $(build_dir)/output_vector_multiplication.out
+unoptimized := $(build_dir)/output_no_vector_multiplication.out
+
 all: run
 
 run: compile
 	@echo "Running optimized version:"
-	./$(build_dir)/output_vector_multiplication
+	$(optimized)
 	@echo "\nRunning unoptimized version:"
-	./$(build_dir)/output_no_vector_multiplication
+	$(unoptimized)
 
-compile:
+compile: $(optimized) $(unoptimized)
+
+$(optimized): $(src)
 	mkdir -p $(build_dir)
-	gcc $(src) -O3 -o $(build_dir)/output_vector_multiplication
-	gcc $(src) -O0 -o $(build_dir)/output_no_vector_multiplication
+	gcc $< -O3 -o $@
+
+$(unoptimized): $(src)
+	mkdir -p $(build_dir)
+	gcc $< -O0 -o $@
 
 clean:
 	rm -rf $(build_dir)/*
-
 
 .PHONY: all run compile clean
 
