@@ -32,3 +32,10 @@ make
 |---------------------|---------------|---------------------|
 | **Enabled**         | 7.9754 s      | 5.0045 s            |
 | **Disabled**        | 18.2969 s      | 10.8587 s            |
+
+**Tested on:** Dell 11th Gen Intel i7-1185G7 (8) @ 4.800GHz 16GB RAM
+
+| Vector Instructions | Naive Approach | Loop Tiling Approach |
+|---------------------|---------------|---------------------|
+| **Enabled**         | 3.2220 s      | 1.9487 s            |
+| **Disabled**        | 6.1121 s      | 4.8843 s            |
